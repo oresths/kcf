@@ -57,7 +57,7 @@ int main()
 //        cv::imwrite(ss.c_str(), image, compression_params);
     }
 
-    std::cout << "Average processing speed " << avg_time/frames <<  "ms. (" << 1./(avg_time/frames)*1000 << " fps)" << std::endl;
+    //std::cout << "Average processing speed " << avg_time/frames <<  "ms. (" << 1./(avg_time/frames)*1000 << " fps)" << std::endl;
 
     return EXIT_SUCCESS;
 }

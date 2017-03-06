@@ -2,9 +2,24 @@ cmake_minimum_required(VERSION 2.8)
 
 project(kcf_tracker)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3")
+if(CMAKE_COMPILER_IS_GNUCXX)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -pedantic -O3 -Wno-long-long -fno-omit-frame-pointer")
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wextra -pedantic -Wno-long-long")
+endif()
 
-FIND_PACKAGE( OpenCV REQUIRED )
+# add OpenCV
+set(OPENCV_DIR_HINT "")
+
+if(WIN32)
+    get_filename_component(OPENCV_DIR_PLATFORM $ENV{OPENCV_DIR} DIRECTORY)
+    get_filename_component(OPENCV_DIR_HINT ${OPENCV_DIR_PLATFORM} DIRECTORY)
+endif(WIN32)
+
+set(OpenCV_STATIC OFF)
+find_package(OpenCV REQUIRED HINTS ${OPENCV_DIR_HINT})
+#FIND_PACKAGE( OpenCV REQUIRED )
+
 link_directories ( ${OpenCV_LIB_DIR} )
 MESSAGE(STATUS "OpenCV_LIB_DIR: ${OpenCV_LIB_DIR}")
 
