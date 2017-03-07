@@ -57,7 +57,18 @@ int main()
 //        cv::imwrite(ss.c_str(), image, compression_params);
     }
 
-    //std::cout << "Average processing speed " << avg_time/frames <<  "ms. (" << 1./(avg_time/frames)*1000 << " fps)" << std::endl;
+    std::cout << "Average processing speed " << avg_time/frames <<  "ms. (" << 1./(avg_time/frames)*1000 << " fps)" << std::endl;
+
+	std::string output = "fps.txt";
+	std::ofstream fps_ofstream;
+
+	fps_ofstream.open(output.c_str());
+	if (!fps_ofstream.is_open())
+		std::cerr << "Error opening output file " << output << "!" << std::endl;
+
+	fps_ofstream << 1. / (avg_time / frames) * 1000 << std::endl;
+
+	fps_ofstream.close();
 
     return EXIT_SUCCESS;
 }
